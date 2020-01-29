@@ -1,0 +1,1 @@
+cleos -u https://rpc.yas.plus set account permission plusplusplus active '{"threshold": 1,"keys": [{"key": "EOS85cii7LNhfttx34Ymn8CKZhwgrNyYgpqDCBPLhTNTRypqpMSin","weight": 1}],"accounts": [{"permission":{"actor":"plusplusplus","permission":"eosio.code"},"weight":1}]}' owner -p plusplusplus
