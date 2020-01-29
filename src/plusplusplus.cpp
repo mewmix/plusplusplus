@@ -25,8 +25,10 @@ void plusplusplus::receive_pretreatment(name from, name to, asset quantity, stri
       int times = ((10 * amount) / pool_balance) + 1;
       times = times > 5 ? times : 5;
       auto each = amount / times;
+      uint64_t random = now();
       for (int i = 0; i < times; i++)
       {
+        random = (random / 1000000 + 12345) * (random % 10000 + 54321);
         /* send defer check action, cancel within 24 hours */
         eosio::transaction txn{};
         txn.actions.emplace_back(
@@ -34,9 +36,8 @@ void plusplusplus::receive_pretreatment(name from, name to, asset quantity, stri
             SYSTEM_TOKEN_CONTRACT,
             "transfer"_n,
             std::make_tuple(get_self(), EXCHANGE_CONTRACT, asset(each, BASE_SYMBOL), string("exchange|plusyaspools")));
-        auto ct = now() + i;
-        txn.delay_sec = ct % (60 * 60 * 24);
-        txn.send(ct, _self, false);
+        txn.delay_sec = random % (60 * 60 * 24);
+        txn.send(random, _self, false);
       }
     }
     // receive dapp token
