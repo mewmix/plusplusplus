@@ -11,6 +11,7 @@
 #define EXCHANGE_CONTRACT "plusexchange"_n
 #define RETIRE_CONTRACT "plusplusvote"_n
 #define POOL_ACCOUNT "plusyaspools"_n
+#define INCOME_ACCOUNT "incomeincome"_n
 
 using namespace eosio;
 using namespace std;

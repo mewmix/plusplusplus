@@ -24,6 +24,7 @@ void plusplusplus::receive_pretreatment(name from, name to, asset quantity, stri
       // int times = ((10 * amount) / pool_balance) + 1;
       // times = times > 5 ? times : 5;
       // auto each = amount / times;
+      plusplusplus::inline_transfer(SYSTEM_TOKEN_CONTRACT, get_self(), INCOME_ACCOUNT, quantity / 2, string("income"));
       uint64_t random = now();
       // for (int i = 0; i < times; i++)
       // {
@@ -43,7 +44,7 @@ void plusplusplus::receive_pretreatment(name from, name to, asset quantity, stri
     else if (get_code() == PLUS_CONTRACT && quantity.symbol == PLUS_SYMBOL)
     // retire
     {
-      plusplusplus::inline_transfer(PLUS_CONTRACT, get_self(), RETIRE_CONTRACT, quantity, string("retire"));
+      plusplusplus::inline_transfer(PLUS_CONTRACT, get_self(), RETIRE_CONTRACT, quantity / 2, string("retire"));
     }
   }
 }
