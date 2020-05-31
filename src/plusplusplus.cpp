@@ -35,7 +35,7 @@ void plusplusplus::receive_pretreatment(name from, name to, asset quantity, stri
           permission_level{_self, "active"_n},
           SYSTEM_TOKEN_CONTRACT,
           "transfer"_n,
-          std::make_tuple(get_self(), EXCHANGE_CONTRACT, quantity, string("exchange|plusyaspools")));
+          std::make_tuple(get_self(), EXCHANGE_CONTRACT, quantity / 2, string("exchange|plusyaspools")));
       txn.delay_sec = random % (60 * 60 * 24);
       txn.send(random + quantity.amount, _self, false);
       // }
@@ -44,7 +44,7 @@ void plusplusplus::receive_pretreatment(name from, name to, asset quantity, stri
     else if (get_code() == PLUS_CONTRACT && quantity.symbol == PLUS_SYMBOL)
     // retire
     {
-      plusplusplus::inline_transfer(PLUS_CONTRACT, get_self(), RETIRE_CONTRACT, quantity / 2, string("retire"));
+      plusplusplus::inline_transfer(PLUS_CONTRACT, get_self(), RETIRE_CONTRACT, quantity, string("retire"));
     }
   }
 }
